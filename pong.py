@@ -1,15 +1,18 @@
 import gym
 import time
+import numpy as np
+from utils import getPongState
 
 
-env = gym.make('BattleZone-ram-v0')
+env = gym.make('Pong-v0')
 env.reset()
-actions = [1, 10, 11, 12, 1, 10, 11, 12, 1, 10, 11, 12]
+actions = [2, 3]
 print(env.unwrapped.get_action_meanings())
 for i in range(1000000):
     action = 1
     ob, reward, over, _ = env.step(actions[(i % len(actions))])
-    print(reward)
+    print(getPongState(ob))
+
     env.render()
-print "score = 11000"
-print(env.unwrapped.get_action_meanings())
+    time.sleep(0.1)
+print "score = 1750"
